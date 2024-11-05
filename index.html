@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="birthday.css">
+</head>
+<body>
+
+    <!-- Birthday Message Container -->
+    <div class="birthday-container" id="birthdayContainer">
+        <h1 id="message">🎉 Happy Birthday! 🎉</h1>
+        <button id="clickMe">Click for a Surprise!</button>
+    </div>
+
+    <!-- Fullscreen Image Pop-up Container -->
+    <div id="imagesContainer" class="images-container" style="display:none;">
+        <!-- Images will appear here -->
+        <button id="nextButton" style="display:none;">Next</button>
+    </div>
+
+    <!-- Audio for the birthday song -->
+    <audio id="birthdaySong" src="photograph.mp3"></audio>
+
+<script>
+    document.getElementById('clickMe').addEventListener('click', function() {
+        const audio = document.getElementById('birthdaySong');
+
+        // Play the background song
+        audio.play();
+
+        // Hide the birthday message and show the images fullscreen
+        document.getElementById('birthdayContainer').style.display = 'none';
+        showImagesFullscreen();
+    });
+
+    // Function to show all images in a fullscreen pop-up
+    function showImagesFullscreen() {
+        const images = [];
+        for (let i = 1; i <= 61; i++) {
+            images.push(`img/${i}.jpg`);
+        }
+
+        // Repeat images 3 times
+        const repeatedImages = images.concat(images, images);
+
+        const imagesContainer = document.getElementById('imagesContainer');
+        imagesContainer.style.display = 'flex'; // Show the container
+
+        repeatedImages.forEach((imgSrc, index) => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            imagesContainer.appendChild(img);
+
+            // Fade-in effect for images
+            setTimeout(() => {
+                img.style.opacity = 1; // Fade in the image
+            }, 200 * (index + 1));
+        });
+
+        // Show the "Next" button after all images are displayed
+        setTimeout(() => {
+            document.getElementById('nextButton').style.display = 'block';
+        }, 200 * (repeatedImages.length + 1));
+    }
+
+    // "Next" button event listener
+    document.getElementById('nextButton').addEventListener('click', function() {
+        const imagesContainer = document.getElementById('imagesContainer');
+        const nextButton = document.getElementById('nextButton');
+
+        // Clear the images
+        imagesContainer.innerHTML = '';
+
+        // Change the message content
+        const messageContent = '🎂 Happy Birthday My Beautiful Girl, I already miss you (hmm). Jangan lupa aku tau. Semoga dapat capai apa yang diimpikan, dimurahkan rezeki, dipanjangkan umur, dimurahkan rezeki, sihat selalu. I will love you forever and ever , sorry kalau selama aku jadi kawan ni ada baut kau terasa hati atau apa , selamat hari jadi yang ke 20 PUTRI ANNUR BALQIS BINTI AZLAN ! 🎂';
+        
+        // Show the message and "Exit" button
+        imagesContainer.innerHTML = `<h1>${messageContent}</h1><button id="exitButton">Exit</button>`;
+        
+        // Hide the "Next" button now that the message is displayed
+        nextButton.style.display = 'none'; 
+
+        // "Exit" button event listener
+        document.getElementById('exitButton').addEventListener('click', function() {
+            const audio = document.getElementById('birthdaySong');
+
+            // Stop the audio
+            audio.pause();
+            audio.currentTime = 0;
+
+            // Reset to the original birthday container
+            imagesContainer.style.display = 'none';
+            document.getElementById('birthdayContainer').style.display = 'block';
+            imagesContainer.innerHTML = ''; // Clear images on exit
+        });
+    });
+</script>
+</body>
+</html>

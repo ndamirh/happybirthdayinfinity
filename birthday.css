@@ -1,0 +1,153 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5e3d2; /* Light brown background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.birthday-container {
+    text-align: center;
+}
+
+h1 {
+    color: black; /* Darker brown for the text */
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px #e2c6b6; /* Light brown shadow */
+    margin-bottom: 20px;
+    transition: transform 0.5s;
+}
+
+button {
+    background-color: #8b5a2b; /* Darker brown */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d2b48c; /* Lighter brown on hover */
+}
+
+button#nextButton {
+    bottom: 50px;
+}
+
+#nextButton, #exitButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #d2b48c; /* Lighter brown */
+    border: none;
+    cursor: pointer;
+}
+
+/* Make sure your container and images are styled properly */
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+    z-index: 1000;
+    overflow-y: scroll; /* Allow scrolling if too many images */
+}
+
+.images-container img {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.fullscreen-popup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.balloons-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: float 10s ease-in infinite;
+    opacity: 0.9;
+}
+
+/* Balloon colors */
+.balloon:nth-child(odd) {
+    background-color: #d2b48c; /* Lighter brown */
+}
+.balloon:nth-child(even) {
+    background-color: black; /* Darker brown */
+}
+
+/* Balloon float animation */
+@keyframes float {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(100vw - 50px));
+    }
+}
+
+.balloon:nth-child(1) {
+    animation-duration: 7s;
+    left: 10%;
+}
+
+.balloon:nth-child(2) {
+    animation-duration: 8s;
+    left: 30%;
+}
+
+.balloon:nth-child(3) {
+    animation-duration: 6s;
+    left: 50%;
+}
+
+.balloon:nth-child(4) {
+    animation-duration: 9s;
+    left: 70%;
+}
+
+.balloon:nth-child(5) {
+    animation-duration: 5s;
+    left: 90%;
+}
